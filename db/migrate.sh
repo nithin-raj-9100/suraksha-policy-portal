@@ -36,6 +36,8 @@ for f in "$DIR"/V*.sql; do
     echo "SET FEEDBACK ON"
     cat "$f"
     echo
+    echo "DECLARE n NUMBER; BEGIN SELECT COUNT(*) INTO n FROM USER_ERRORS; IF n > 0 THEN RAISE_APPLICATION_ERROR(-20999, n || ' compilation error(s), see USER_ERRORS'); END IF; END;"
+    echo "/"
     echo "INSERT INTO SCHEMA_MIGRATIONS (VERSION) VALUES ('$v');"
     echo "COMMIT;"
     echo "EXIT"
