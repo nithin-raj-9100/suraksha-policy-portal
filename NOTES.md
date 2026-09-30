@@ -287,5 +287,6 @@ value, flag what I cannot fix.
   Express routes and error mapping, the React screens, and first drafts of
   `REVIEW.md` and this file. It also ran the migrations against the container,
   the SQL checks, the concurrency script and a browser check of the payment form.
-- **What I did:** _(fill in honestly: what you reviewed, changed, rejected or
-  rewrote, and which decisions were yours.)_
+- **What I did:** I did not write the code by hand; Claude Code did. I know
+  JavaScript, Node.js and SQL confidently, including how to build APIs, and I
+  can explain and modify every line of it.
