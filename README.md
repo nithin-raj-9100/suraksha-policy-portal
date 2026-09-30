@@ -49,6 +49,15 @@ scripts):
 docker compose down -v && docker compose up -d
 ```
 
+Then apply the migrations (once the database is ready):
+
+```bash
+./db/migrate.sh      # applies db/migrations/V*.sql in order, skips ones already applied
+./db/test.sh         # optional: SQL checks for the rules and RECORD_PAYMENT (rolled back)
+```
+
+See `NOTES.md` for what each migration does and why.
+
 ## 2. Open a SQL prompt
 
 ```bash
