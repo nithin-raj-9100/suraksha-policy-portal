@@ -1,0 +1,17 @@
+First run of the naive V001__constraints_and_indexes.sql against the seeded DB
+(run with errors not fatal, to see every conflict at once):
+
+OK    ALTER TABLE CUSTOMERS MODIFY (FULL_NAME NOT NULL, PAN NOT NULL)
+OK    ALTER TABLE CUSTOMERS ADD CONSTRAINT UQ_CUSTOMERS_PAN UNIQUE (PAN)
+        -> "passed", but only because 'ABCDE1234F', 'abcde1234f' and ' ABCDE1234F '
+           are different strings. A unique constraint that protects nothing.
+FAIL  CK_CUSTOMERS_PAN_FORMAT            ORA-02293 cannot validate - check constraint violated
+FAIL  POLICIES MODIFY ... NOT NULL       ORA-02296 null values found
+FAIL  UX_POLICIES_POLICY_NO (UPPER)      ORA-01452 duplicate keys found
+FAIL  FK_POLICIES_CUSTOMER               ORA-02298 parent keys not found
+FAIL  CK_POLICIES_MODE                   ORA-02293 check constraint violated
+FAIL  POLICIES MODIFY PREMIUM_AMOUNT NUMBER(12,2)
+                                         ORA-01439 column to be modified must be empty to change datatype
+OK    PAYMENTS MODIFY ... NOT NULL
+FAIL  FK_PAYMENTS_POLICY                 ORA-02298 parent keys not found
+FAIL  UQ_PAYMENTS_IDEM_KEY               ORA-02299 duplicate keys found
