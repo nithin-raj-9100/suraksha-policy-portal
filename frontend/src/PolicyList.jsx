@@ -28,6 +28,11 @@ export default function PolicyList() {
     setParams(next, { replace: 'search' in changes });
   }
 
+  function goToPage(n) {
+    update({ page: n });
+    window.scrollTo({ top: 0 });
+  }
+
   useEffect(() => {
     setSearchInput(search);
   }, [search]);
@@ -145,11 +150,11 @@ export default function PolicyList() {
           )}
 
           <nav className="pager" aria-label="Pages">
-            <button type="button" disabled={page <= 1 || loading} onClick={() => update({ page: page - 1 })}>
+            <button type="button" disabled={page <= 1 || loading} onClick={() => goToPage(page - 1)}>
               ← Previous
             </button>
             <span>Page {Math.min(page, data.totalPages)} of {data.totalPages}</span>
-            <button type="button" disabled={page >= data.totalPages || loading} onClick={() => update({ page: page + 1 })}>
+            <button type="button" disabled={page >= data.totalPages || loading} onClick={() => goToPage(page + 1)}>
               Next →
             </button>
           </nav>
