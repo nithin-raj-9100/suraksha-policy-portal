@@ -27,8 +27,84 @@ body {
 
 .app-main { padding: 20px; max-width: 1100px; margin: 0 auto; }
 
-.todo { color: var(--muted); }
+.muted { color: var(--muted); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+h1 { margin: 8px 0 16px; font-size: 24px; }
+h2 { font-size: 17px; margin: 24px 0 10px; }
+a { color: var(--accent); }
 
-/* Style the rest however you like. We are not judging you on visual polish,
-   but we do look at whether the screen is usable by someone in a branch who
-   is in a hurry. */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+button {
+  font: inherit; padding: 6px 12px; border: 1px solid var(--line);
+  background: #fff; border-radius: 6px; cursor: pointer;
+}
+button:disabled { opacity: .5; cursor: not-allowed; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; padding: 8px 18px; }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter { display: inline-flex; align-items: center; min-height: 34px; }
+.filter.active { border: 2px solid var(--ink); font-weight: 600; }
+.search input { font: inherit; padding: 7px 10px; width: 300px; border: 1px solid #b9bac1; border-radius: 6px; }
+.summary { margin: 14px 0 6px; }
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table th { font-size: 13px; color: var(--muted); font-weight: 600; }
+.table th.num, .table td.num { text-align: right; }
+.is-loading { opacity: .55; transition: opacity .15s; }
+
+.status-detail { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+/* Each status has its own icon and word; colour is a second cue, not the only one. */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px 2px 3px;
+  border-radius: 999px; font-size: 13px; font-weight: 600; border: 1px solid; white-space: nowrap;
+}
+.badge-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%; font-size: 11px; color: #fff;
+}
+.badge-paid     { color: #1d6b3a; border-color: #1d6b3a; background: #eaf6ee; }
+.badge-paid .badge-icon { background: #1d6b3a; }
+.badge-due      { color: #1f4f8a; border-color: #1f4f8a; background: #eaf1fb; }
+.badge-due .badge-icon { background: #1f4f8a; }
+.badge-in_grace { color: #8a5300; border-color: #8a5300; background: #fff4e0; }
+.badge-in_grace .badge-icon { background: #8a5300; }
+.badge-lapsed   { color: #a3261c; border-color: #a3261c; background: #fdecea; }
+.badge-lapsed .badge-icon { background: #a3261c; }
+.badge-unknown  { color: #4a4b52; border-color: #4a4b52; background: #f1f1f4; border-style: dashed; }
+.badge-unknown .badge-icon { background: #4a4b52; }
+
+.pager { display: flex; gap: 14px; align-items: center; justify-content: center; margin: 16px 0; }
+.empty { padding: 28px; text-align: center; border: 1px dashed var(--line); border-radius: 8px; }
+
+.alert { border: 1px solid; border-left-width: 5px; border-radius: 6px; padding: 10px 14px; margin: 12px 0; }
+.alert p { margin: 4px 0; }
+.alert-error   { border-color: #a3261c; background: #fdecea; }
+.alert-warning { border-color: #8a5300; background: #fff4e0; }
+.alert-success { border-color: #1d6b3a; background: #eaf6ee; }
+.warning-text { color: #8a5300; }
+
+.detail-header { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.detail-header h1 { margin: 0; }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0 32px; }
+dl { display: grid; grid-template-columns: 130px 1fr; gap: 6px 12px; margin: 0; }
+dt { color: var(--muted); }
+dd { margin: 0; }
+
+.payment-form { border: 1px solid var(--line); border-radius: 8px; padding: 4px 18px 14px; margin-top: 20px; max-width: 560px; }
+.payment-form fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label { font-size: 13px; color: var(--muted); }
+.field input, .field select { font: inherit; padding: 7px 10px; border: 1px solid #b9bac1; border-radius: 6px; }
+.field input { width: 180px; }
+.field input[aria-invalid="true"] { border: 2px solid #a3261c; }
+.due-line { margin: 4px 0 12px; }
+
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { padding: 4px 0; }
